@@ -1,7 +1,6 @@
 lib-cov
 *.seed
 *.log
-*.csv
 *.dat
 *.out
 *.pid
@@ -10,5 +9,7 @@ lib-cov
 pids
 logs
 results
+
+.idea
 
 npm-debug.log
