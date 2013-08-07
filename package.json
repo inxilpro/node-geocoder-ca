@@ -5,6 +5,9 @@
 	"author": "Chris Morrell (http://cmorrell.com)",
 	"keywords": ["geocode", "geocoder", "geo", "location"],
 	"version": "0.0.3",
+	"engines": {
+		"node": ">=0.8"
+	},
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/inxilpro/node-geocoder-ca"
