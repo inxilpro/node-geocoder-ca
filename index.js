@@ -24,6 +24,11 @@ function Coords(lat, lon) {
  */
 function Geocoder(options) {
 	this.options = options || {};
+
+	// Override default node behavior to exit on 'error' event
+	this.on('error', function() {});
+
+	// Call super_
 	EventEmitter.call(this);
 }
 
@@ -44,6 +49,8 @@ Geocoder.endpoints = {
 Geocoder.prototype.geocode = function(location, callback) {
 	var self = this,
 		request, qs;
+
+	callback = callback || function() {};
 
 	// Make a guess at location
 	if (!location || '' == location) {
@@ -89,6 +96,8 @@ Geocoder.prototype.geocode = function(location, callback) {
 			self._error(err, callback);
 		}
 	});
+
+	return this;
 }
 
 Geocoder.prototype._processHttpResult = function(result, callback) {
@@ -131,7 +140,7 @@ Geocoder.prototype._processHttpResult = function(result, callback) {
 }
 
 Geocoder.prototype._error = function(err, callback) {
-	// this.emit('error', err);
+	this.emit('error', err);
 	callback(err, null);
 	return err;
 }

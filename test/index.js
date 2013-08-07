@@ -3,14 +3,15 @@ var vows = require('vows'),
 	geo = require('../index.js'),
 	Coords = geo.Coords,
 	geocoder = new geo.Geocoder(),
-	simple_distance = require('./simple_distance.js')
-	specReporter = require("vows/lib/vows/reporters/spec");
+	simple_distance = require('./simple_distance.js'),
+	specReporter = require("vows/lib/vows/reporters/spec"),
+	validAddress = '525 Market St, Philadelphia, PA 19106';
 
 // Geocoder Test Suite
 vows.describe('When geocoding').addBatch({
 	'A valid, full US address': {
 		topic: function() {
-			geocoder.geocode('525 Market St, Philadelphia, PA 19106', this.callback);
+			geocoder.geocode(validAddress, this.callback);
 		},
 
 		'does not return an error': function (err, coords) {

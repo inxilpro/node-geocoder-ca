@@ -10,7 +10,7 @@ Usage
 Accepts a `location` argument and a `callback`.  `callback` receives
 two params: `err` and `coords`.  In the case of an error, `err` will
 contain an `Error` object.  Otherwise, `coords` will be populated with
-a `Geocoder.Coords` object, with `lat` and `lon` properties.
+a `Coords` object, with `lat` and `lon` properties.
 
 `location` can be one of the following:
 
@@ -42,8 +42,32 @@ geocoder.geocode(address, function(err, coords) {
 });
 ```
 
+Events
+---------------------------
+The `Geocoder` object is an event emitter.  It emits the following events:
+
+ - A `result` event happens whenever geocoding succeeds.  It passes a `Coords` object to any listeners.
+ - A `error` event happens whenever there is an error.  It passes the `Error` object to any listeners.
+
+You can choose to skip the `callback` on the `geocode()` method and listen for events instead.
+
+**Warning: this usage is currently untested.**
+
+Example:
+
+```javascript
+var Geocoder = require('node-geocoder-ca').Geocoder,
+	geocoder = new Geocoder(),
+	address = '525 Market St, Philadelphia, PA 19106';
+
+geocoder.geocode(address)
+	.on('result', function(coords) { /* ... */ })
+	.on('error', function(err) { /* ... */ });
+```
+
 Todo
 ---------------------------
- - [x] Basic geocoding
- - [ ] Suggestions on failed geocoding
- - [ ] Reverse geocoding
+- [x] Basic geocoding
+- [ ] Suggestions on failed geocoding
+- [ ] Reverse geocoding
+- [ ] Tests for event-based usage
