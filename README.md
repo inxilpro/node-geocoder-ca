@@ -2,6 +2,7 @@ Geocoder.ca Module
 ===========================
 
 Node.js module to interface with the Geocoder.ca API.
+[![Build Status](https://travis-ci.org/inxilpro/node-geocoder-ca.png)](https://travis-ci.org/inxilpro/node-geocoder-ca)
 
 Usage
 ---------------------------
